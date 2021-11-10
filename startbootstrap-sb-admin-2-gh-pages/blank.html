@@ -361,8 +361,75 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <div class="mb-4">
+                        <div> <button type="button" class="btn btn-primary" onclick="onButtonClick()">Click me</button>
+                        </div>
+                        <div> จำนวนครั้งที่ Clicks : <span id="clicks">0</span> </div>
+                        <script>
+                            var clicks = 0;
+                            function onButtonClick() {
+                                console.log("CLICK!!!");
+                                clicks += 1;
+                                document.querySelector("#clicks").innerHTML = clicks;
+                            }
+                        </script>
+                    </div>
+                    
 
                 </div>
+                <div class="mb-4">
+                    <div> <button type="button" class="btn btn-secondary" onclick="getMovies()">แสดง Movies</button>
+                    </div>
+                    <div class="row" id="movie-row">
+                    </div>
+                    <script>
+                        const getMovies = async function () {
+                            let movies = [
+                                { "id": "1", "title": "Star Wars", "releaseYear": "1977", "image": "https://www.csbootstrap.com/img/starwar.jpg" },
+                                { "id": "2", "title": "Back to the Future", "releaseYear": "1985", "image": "https://www.csbootstrap.com/img/back-to-the-future.jpg" },
+                                { "id": "3", "title": "The Matrix", "releaseYear": "1999", "image": "https://www.csbootstrap.com/img/matrix.jpg" },
+                                { "id": "4", "title": "Inception", "releaseYear": "2010", "image": "https://www.csbootstrap.com/img/inception.jpg" },
+                                { "id": "5", "title": "Interstellar", "releaseYear": "2014", "image": "https://www.csbootstrap.com/img/interstellar.jpg" }
+                            ]
+                            console.log("Data : ", movies);
+                            let row = document.querySelector("#movie-row");
+                            console.log(row);
+                            for (let item of movies) {
+                                //CREATE div .col-lg-4
+                                let div_col_lg_4 = document.createElement("div");
+                                div_col_lg_4.classList.add("col-lg-4");
+                                row.appendChild(div_col_lg_4);
+                                //CREATE div .card
+                                let div_card = document.createElement("div");
+                                div_card.classList.add("card");
+                                div_card.classList.add("mb-4");
+                                div_col_lg_4.appendChild(div_card);
+                                //CREATE img .card-img-top
+                                let img = document.createElement("img");
+                                img.classList.add("card-img-top");
+                                img.src = item.image;
+                                img.height = 250;
+                                div_card.appendChild(img);
+                                //CREATE div .card-body
+                                let div_body = document.createElement("div");
+                                div_body.classList.add("card-body");
+                                div_card.appendChild(div_body);
+                                //CREATE h5 .card-title
+                                let h5 = document.createElement("h5");
+                                h5.classList.add("card-title");
+                                h5.innerHTML = item.title;
+                                div_body.appendChild(h5);
+                                //CREATE button
+                                let button = document.createElement("button");
+                                button.classList.add("btn");
+                                button.classList.add("btn-success");
+                                button.innerHTML = "Add to whistlist";
+                                div_body.appendChild(button);
+                            }
+                        }
+                    </script>
+                </div>
+                
                 <!-- /.container-fluid -->
 
             </div>
